@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-store">
+<meta http-equiv="Pragma" content="no-cache">
+-->
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+<meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<title></title>
+<style>
+div{position: absolute;bottom: 0;left: 0;right: 0;height: 88px;background-color: #00A552;}
+</style>
+
+</head>
+<body>
+<div id="wrap">hh</div>
+
+</body>
+<script>
+var oDragWrap = document.getElementById('wrap');
+//拖进
+oDragWrap.addEventListener('dragenter', function(e) {
+　e.preventDefault();
+}, false);
+
+//拖离
+oDragWrap.addEventListener('dragleave', function(e) {
+　//dragleaveHandler(e);
+}, false);
+
+//拖来拖去 , 一定要注意dragover事件一定要清除默认事件
+//不然会无法触发后面的drop事件
+oDragWrap.addEventListener('dragover', function(e) {
+　e.preventDefault();
+}, false);
+
+//扔
+oDragWrap.addEventListener('drop', function(e) {
+　dropHandler(e);
+}, false);
+
+var dropHandler = function(e) {
+　e.preventDefault();
+　var fileList = e.dataTransfer.files;　　//获取文件列表
+　var img = document.createElement('img');
+
+
+　//检测是否是拖拽文件到页面的操作
+　if (fileList.length == 0) {return;};
+
+　//检测文件是不是图片
+　if (fileList[0].type.indexOf('image') === -1) {return;}
+　
+  console.log(fileList[0])
+　if (window.URL.createObjectURL) {
+　　//FF4+
+　　img.src = window.URL.createObjectURL(fileList[0]);
+	oDragWrap.appendChild(img);
+　} else if (window.webkitURL.createObjectURL) {
+　　//Chrome8+
+　　img.src = window.webkitURL.createObjectURL(fileList[0]);
+　} else {
+　　//实例化file reader对象
+　　var reader = new FileReader();
+
+　　reader.onload = function(e) {
+　　　img.src = this.result;
+　　　oDragWrap.appendChild(img);
+　　}
+　　reader.readAsDataURL(fileList[0]);
+　}
+}
+</script>
+</html>

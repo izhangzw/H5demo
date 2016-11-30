@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+<meta name="format-detection" content="telephone=no,email=no,date=no,address=no" />
+<!--当网站添加到主屏幕快速启动方式，可隐藏地址栏，仅针对ios的safari（注：IOS7.0版本以后，safari上已看不到效果）-->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!--将网站添加到主屏幕快速启动方式，仅针对ios的safari顶端状态条的样式（可选default/black/black-translucent ）-->
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<!--去掉winphone系统a、input标签被点击时产生的半透明灰色背景-->
+<meta name="msapplication-tap-highlight" content="no">
+	
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+	<!--
+    	作者：342790249@qq.com
+    	时间：2015-08-04
+    	描述：手机端H5页面模板
+    	详细规范参考：http://www.w3cfuns.com/article-5597996-1-1.html
+    -->
+<title></title>
+<link rel="stylesheet" href="../css/base.css"/>
+<style>
+.goals .goal{height: 44px;padding: 7px 0;}
+.goals .goal>.a{width: 35px;text-align: center;line-height: 44px;}
+.goals .goal>.z{}
+.goals .goal>.z>.za{height: 25px;line-height: 25px;}
+.goals .goal>.z>.za>.zaa{}
+.goals .goal>.z>.za>.zaz{width: 100px;line-height: 12px;text-align: right;}
+.goals .goal>.z>.za>.zaz>span{color: #333; font-size: 12px;}
+.goals .goal>.z>.za>.zaz>span>strong{color:inherit;font-size: 18px;}
+.goals .goal>.z>.zz{height: 20px;line-height: 20px;}
+.goals .goal>.z>.zz>.zza{}
+.goals .goal>.z>.zz>.zzz{color: #ccc; font-size: 12px;text-align: right;width: 80px;}
+/*目标进度条*/
+.strip{width: 98%;position: relative;top: -11px;left:0}
+.strip .border{width: 100%;height: 8px;border-radius: 3px;position: absolute;border: 1px solid #00a552;}
+.strip .filling{height: 10px;border-radius: 3px;position: absolute;background-color: #00a552;padding-left: 1px}
+.strip .benchmark{height: 13px;width: 1px;background-color: #3E84AD;position: absolute;top: -1px}
+
+.goal.fail .strip .border{border-color: #bb505d}
+.goal.fail .strip .filling{background-color: #bb505d;}
+
+</style>
+</head>
+<body>
+<div class="goals">
+<div class="flex goal border-btm">
+	<div class="a">1</div>
+	<div class="z flex-1 flex flex-v">
+		<div class="za flex-1 flex">
+			<div class="zaa flex-1 line-ellipsis">销售额完成1200万，起始日期今天结束日期年底，初始值300万。</div>
+			<div class="zaz">
+				<span><strong>300000</strong>/1200000</span>
+			</div>
+		</div>
+		<div class="zz flex-1 flex">
+			<div class="zza flex-1 line-ellipsis">
+				<span class="strip">
+					<span class="border"></span>
+					<span class="filling" style="width: {{data.percent>100 ? 100 : data.percent}}%"></span>
+					<span class="benchmark" style="left: {{data.planPercent>100 ? 100 : data.planPercent}}%"></span>
+				</span>
+			</div>
+			<div class="zzz">2016/3/1</div>
+		</div>
+	</div>
+</div>
+
+<div class="flex goal">
+	<div class="a">1</div>
+	<div class="z flex-1 flex flex-v">
+		<div class="za flex-1 flex">
+			<div class="zaa flex-1 line-ellipsis">销售额完成1200万，起始日期今天结束日期年底，初始值300万。</div>
+			<div class="zaz">
+				<span><strong>1</strong>/10</span>
+			</div>
+		</div>
+		<div class="zz flex-1 flex">
+			<div class="zza flex-1 line-ellipsis">
+				<span class="strip">
+					<span class="border"></span>
+					<span class="filling" style="width: {{data.percent>100 ? 100 : data.percent}}%"></span>
+					<span class="benchmark" style="left: {{data.planPercent>100 ? 100 : data.planPercent}}%"></span>
+				</span>
+			</div>
+			<div class="zzz">2016/11/11</div>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+<!--尽量使用CDN  http://www.bootcdn.cn/-->
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.js"></script>
+<script src="loading.js"></script>
+<script>
+/* JS here */
+
+var t = 1465931940000;
+var d = new Date(t).toLocaleDateString()
+console.log(d)
+</script>
+</html>

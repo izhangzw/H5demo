@@ -1,0 +1,19 @@
+关于typeof 和 instanceof
+(instanceof: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof)
+	var
+	a = typeof null,		//object
+	b = typeof [],			//object -- instanceof Array
+	c = typeof undefined,	//undefined
+	d = typeof '',			//string
+	e = typeof NaN;			//number
+	console.log(f = typeof fucntion)
+
+prototype
+
+
+
+创建一个空的jQuery对象
+	创建一个新的jQuery空间能极大的减小开销。有时候，你可能需要创建一个空的对象，然后使用add()方法添加对象。
+	var container = $([]); 
+	container.add(another_element);
+	这也是quickEach方法的基础，你可以使用这种更快的方式而非each()。

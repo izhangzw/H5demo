@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<script>
+/*
+ajax如何实现异步
+
+创建XMLHttpRequest对象
+open(method,url,ansyc,)链接服务器
+setRequetHeader()
+
+send(params)将请求发送服务器
+onreadystatechange里判断readyState和status
+处理服务器返回的数据responseText
+ */
+var xhr = new XMLHttpRequest();
+
+var
+url = 'okr-web/likes/create',
+method = 'post',
+params = {
+	targetId: 'obj-21856c4c-5b7d-402f-b519-39a0cf1ea801',
+	targetType: 1
+};
+
+xhr.open(method,url,true);//open(method, url, async, username, password)
+xhr.setRequestHeader('Content-type','application/json');//application/x-www-form-urlencoded
+xhr.onreadystatechange = function(){
+	console.log(xhr.readyState)
+	/*
+	0 请求未初始化（在调用 open() 之前） 
+	1 请求已提出（调用 send() 之前） 
+	2 请求已发送（这里通常可以从响应得到内容头部） 
+	3 请求处理中（响应中通常有部分数据可用，但是服务器还没有完成响应） 
+	4 请求已完成（可以访问服务器响应并使用它）
+	*/
+	if(xhr.readyState==2){
+		//loading...
+	}
+	if(xhr.readyState==4){
+		//loading...end
+		console.log(xhr.status)
+		//console.log(xhr.responseText)
+		//if(xhr.status==200)
+			//xhr.responseText -->string
+			//success(xhr.responseText)
+		//else
+			//fail(xhr.responseText)
+	}
+}
+xhr.send(params)
+
+</script>
+</body>
+</html>
