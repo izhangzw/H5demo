@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="bootstrap.min.css" />
+<link rel="stylesheet" href="bootstrap-treeview.css" />
+</head>
+<body>
+<div id="tv"></div>
+
+<script src="./jquery.js"></script>
+<script src="./bootstrap-treeview.js"></script>
+<script>
+~(function(window, $){
+	window.utree = {};
+	utree.loading = 0;//
+	utree.userOnTop = 1;//1: 人员显示在前面; 0: 部门在前面
+	utree.url = '';//获取数据地址
+	
+	utree._default = {
+		levels: 9,
+		animated: "fast", 
+		collapsed: true, 
+		unique: true
+	};
+	utree.loadScript = function(src, callback) {
+		var script = document.createElement("script"),
+			c = function() {
+				callback();
+			};
+		script.src = src;
+		script.charset = "utf-8";
+		script.onload = c;
+		script.onreadystatechange = function() {
+			if (this.readyState == "complete" || this.readyState == "loaded") {
+				c();
+			}
+		};
+		document.getElementsByTagName("head")[0].appendChild(script);
+	};
+	utree.createNode = function(data){
+		var node = {
+			text: '',
+			nodes: []
+		};
+		var 
+		self = data.self,
+		users = data.users || [];
+		subs = data.subOrganizations || [];
+		
+		if(self){
+			node.text = self.displayName;
+			//node.state = { expanded: true }
+			//node.o = self.o;
+		}
+		if(users){
+			$.each(users, function(i, v){
+				var nd = {
+					text: v.cn
+				}
+				node.nodes.push(nd)
+			})
+		}
+		if(subs){
+			$.each(subs, function(i, v){
+				node.nodes.push(utree.createNode(v))
+			})
+		}
+		return node;
+	};
+	//解析成符合插件使用的数据格式
+	utree.fixedData = function(datas){
+		var ret = [];
+		if(datas&&datas.length){
+			$.each(datas, function(i, v){
+				
+				ret.push(utree.createNode(v))
+			});
+		}
+		//ret = [{"text": "父节点 1","nodes": [{"text": "子节点 1","nodes": [{"text": "孙子节点 1"},{"text": "孙子节点 2"}]},{"text": "子节点 2"}]},{"text": "父节点 2"},{"text": "父节点 3"},{"text": "父节点 4"},{"text": "父节点 5"}];
+		return ret;
+	}
+	//初始化
+	utree.init = function($o, options){
+		var _o = this;
+		//merge options
+		var opts = $.extend(_o._default, options);
+		//tree option处理
+		//自定义插件 option处理
+		
+		//加载数据(本地)
+		_o.loadScript("datas.js", function() {
+			opts.data = utree.fixedData(datas.root.data);
+			//TODO 处理获取的data
+			console.log(opts)
+			//treeview
+			var $tree = $o.treeview(opts)
+			
+			$tree
+			.on('nodeSelected', function(event, data) {
+				if(data.nodes){
+					//dept
+				}else{
+					//user
+				}
+			})
+			.on('nodeExpanded', function(event, data) {
+				console.info(event)
+				console.info(data)
+				var $n = $o.treeview('getNode', data.nodeId);
+				console.log()
+				if(data.nodes){
+					//dept
+					var dept = utree.fixedData(datas.child.data);
+					var here = opts.data[0].nodes[data.nodeId-1];
+					if(here){
+						here.nodes = dept[0]
+						console.log(dept)
+						console.log(opts.data[0])
+					}
+//					var branches = $("<li><span class='folder'>New Sublist</span><ul>" +
+//						"<li><span class='file'>Item1</span></li>" +
+//						"<li><span class='file'>Item2</span></li></ul></li>").appendTo($o);
+//					$o.treeview({
+//						add: branches
+//					});
+					
+				}else{
+					//user
+				}
+			})
+			//$o.treeview('collapseAll', { silent: true });
+		});
+	}
+	
+	/**
+	 * ajax data
+	 * 
+	 * 	datas: {
+	 * 		params: {}//参数
+	 * 		success: function(){},
+	 * 		fail: function(){},
+	 * 		finally: function(){}
+	 * 	}
+	 */
+	utree.data = function(datas, callback){
+		var params;
+		if( typeof(datas.params)=='object' ){
+			params = JSON.stringify(params);
+		}else if( typeof(datas.params)=='string' ){
+			params = datas.params;
+		}else{
+			params = '';
+		}
+		
+		
+		var
+		//成功回调
+		succ = function(ret){
+			datas.success(ret)
+		},
+		//失败回调
+		fail = function(XMLHttpRequest, textStatus, errorThrown){
+			datas.fail(XMLHttpRequest, textStatus, errorThrown)
+		},
+		//
+		final = function(){
+			datas.finally()
+		};
+		
+		
+		
+		$.ajax({
+			url: utree.url,
+			data: params,
+			type: 'get',
+			dataType: 'json',
+			//async: true,
+			//cache: false,
+			//global: true,
+			headers: {
+				"Content-type": "application/json"
+			},
+			success: succ,
+			error: fail,
+            complete: final
+		})
+	}
+	
+	
+	
+	$(function(){
+		utree.init($('#tv'))
+	})
+	
+})(window, jQuery)
+</script>
+</body>
+</html>

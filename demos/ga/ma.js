@@ -1,4 +1,4 @@
-(function () {
+(function (window, document, navigator) {
     var params = {};
     //Document对象数据
     if(document) {
@@ -16,7 +16,18 @@
     //navigator对象数据
     if(navigator) {
         params.lang = navigator.language || ''; 
-    }   
+    }
+    //ua
+    var ua = navigator.userAgent || navigator.vendor || window.opera;
+    var i = ua.indexOf('(')+1, j = ua.indexOf(')');
+	params.ua = ua.substring(i, j);
+	//最后响应时间
+	window.__ze = +new Date();
+	params.loading = (__ze - __zs)/1000;
+	
+	//用户信息是否存在
+	//设置用户唯一标识
+	
     //解析_maq配置
     if(_maq) {
         for(var i in _maq) {
@@ -37,8 +48,33 @@
         }   
         args += i + '=' + encodeURIComponent(params[i]);
     }   
- 
+	console.info(params)
     //通过Image对象请求后端脚本
     var img = new Image(1, 1); 
-    //img.src = 'http://analytics.codinglabs.org/1.gif?' + args;
-})();
+    //img.src = 'http://analytics.codinglabs.org/_zzw.gif?' + args;
+})(window, document, navigator);
+
+
+
+/*
+响应时间
+域名
+URL
+上一跳url
+页面标题
+机型
+浏览器
+分辨率
+客户端语言
+哪个app
+
+IP
+访问时间
+
+访客标识// 给用户起名字，存cookie里
+
+
+**/
+//TODO 解析ua 
+//mobile: os vs
+//pc: os vs

@@ -2,17 +2,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>测试埋点统计</title>
+<script>window.__zs = +new Date()</script>
 </head>
 <body>
 <script type="text/javascript">
+
 var _maq = _maq || [];
-_maq.push(['_setAccount', '网站标识']);
+_maq.push(['_setAccount', 'its_okr']);
  
 (function() {
-//  var ma = document.createElement('script'); ma.type = 'text/javascript'; ma.async = true;
-//  ma.src = ('https:' == document.location.protocol ? 'https://analytics' : 'http://analytics') + '.codinglabs.org/ma.js';
-//  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ma, s);
+	console.log(typeof window.onload)
+	if(typeof window.onload === 'function'){
+		
+	}else{
+		//没有onload
+	}
+	window.onload = function(){
+		var ma = document.createElement('script');
+		ma.type = 'text/javascript';
+		//ma.async = true;
+		ma.src = './ma.js';
+	//	ma.src = ('https:' == document.location.protocol ? 'https://analytics' : 'http://analytics') + '.codinglabs.org/ma.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ma, s);
+	}
+//console.log(window.onload);
 })();
 </script>
 </body>

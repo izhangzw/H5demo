@@ -3,7 +3,16 @@
 基本资料
 姓名：
 战斗力
+HTML5
+CSS
+javascript
+AngularJS
+
 项目经历
+江苏移动管理信息系统统
+2016.11 - ~
+主要负责前端公用组件开发, 代码整合和优化, 部分模块开发
+
 黑马周报
 	2014.8 ~ 2016.4
 	响应式web版
@@ -13,23 +22,30 @@
 	http://www.heimabao.com/
 	
 	
-	//参与产品设计和负责所有前端开发,并加入游戏化元素
-	//主要使用jQuery, Bootstrap, Font Awesome, ajax, cookie等插件和技术
-	//实现的伪单页系统, 包含响应式, 兼容IE9以上
+	参与产品设计和负责所有前端开发,并加入游戏化元素, 对前端进行了优化和部分重构
+	web版主要使用jQuery, Bootstrap, Font Awesome, ajax, cookie等插件和技术
+	实现的伪单页系统, 包含响应式. 优雅降级兼容IE9
+	微信版&钉钉版主要使用angularJS, 兼容微信和钉钉做了平台个性化处理
+	结合ui-rounter实现的单页系统
+	
 	
 黑马OKR
-	2016.5 ~ 至今
+	2016.5 ~ 11
 	混合app
-	主要使用angularJS, ionic, phoneGap
+	主要使用angularJS, ionic, cordova
+	参与产品页面设计（向导，列表，详情，仪表盘），前端整体架构和功能实现（向导，OKR）
+	用到了几个cordova插件(keyboard, statusBar, camera...)
+	使用directive对功能进行整理和封装
 	
 问卷调查（仿问卷网）
 	2016.4 ~ 6
 	web端
-	主要使用angularJS, 拖拽, 优雅降级兼容IE8
+	主要使用angularJS, 拖拽, 优雅降级兼容IE8。
+	前端一个人负责，仿问卷网基本功能进行实现
 和客服
 	2015.3 ~ 9
 	混合app
-	APICloud,融云IM
+	APICloud,jQuery
 	主要负责前端开发实现, 配合原生模块调试, 服务器端接口调试, 版本升级打包等APP管理
 
 除此之外,还做过一些公司年会抢红包等小活动, 在Mocha这3年里前端技术得到很大的提高,并有一些沉淀和总结.
@@ -47,3 +63,5 @@ HTML
 对面向对象编程有丰富经验。可熟练使用MVC框架(如angularJS)进行复杂单页面应用开发。
 
 能熟练运用CSS完成各种类型的网页布局，包括当前流行的响应式布局
+
+二维码

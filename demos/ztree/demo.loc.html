@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="tree.css" />
+<style>
+	
+</style>
+</head>
+<body>
+<div id="tv" class="ztree"><span class="utree-loading"></span></div>
+
+<script src="./jquery.js"></script>
+<script src="./tree.core.js"></script>
+<script>
+~(function(window, $){
+	window.utree = {};
+	utree.vs = '12.13';
+	utree.author = 'zhangzw';
+	
+	utree.userOnTop = 1;//1: 人员显示在前面; 0: 部门在前面
+	
+	
+	utree._default = {
+		async: {
+			enable: true
+			,url: './orgUsers'
+			,type: 'get'
+			,dataType: 'json'
+			//,dataFilter: utree.children()
+			//,contentType: 'application/x-www-form-urlencoded'
+			//,autoParam: getUrlParams()
+			//,otherParam:{"otherParam":"zTreeAsyncTest"}
+			//,dataFilter: filter
+		}
+		,callback: {
+			beforeClick: function(treeId, treeNode, clickFlag){console.log('beforeClick', clickFlag);utree._currParentId=treeNode.o;return true},
+			beforeAsync: function(treeId, treeNode){console.log('beforeAsync', treeNode); return treeNode; },
+			onAsyncError: function(){console.log('onAsyncError')},
+			onAsyncSuccess: function(event, treeId, treeNode, msg){console.log('onAsyncSuccess', treeNode, msg)},
+		}
+	};
+	utree.loadScript = function(src, callback) {
+		var script = document.createElement("script"),
+			c = function() {
+				callback();
+			};
+		script.src = src;
+		script.charset = "utf-8";
+		script.onload = c;
+		script.onreadystatechange = function() {
+			if (this.readyState == "complete" || this.readyState == "loaded") {
+				c();
+			}
+		};
+		document.getElementsByTagName("head")[0].appendChild(script);
+	};
+	utree.createNode = function(data){
+		var node = {
+			name: '',
+			children: []
+		};
+		var 
+		self = data.self,
+		users = data.users || [];
+		subs = data.subOrganizations || [];
+		
+		if(self){
+			node.name = self.displayName;
+			node.isParent = true;
+			node.open = self.parentOrgId ? false : true;
+			node.o = self.o;
+		}
+		////node
+		var node4user = [], node4subs = [];
+		//users
+		$.each(users, function(i, v){
+			var nd = {
+				name: v.cn
+			}
+			node4user.push(nd)
+		})
+		//subs
+		$.each(subs, function(i, v){
+			node4subs.push(utree.createNode(v))
+		})
+		
+		node.children = utree.userOnTop
+		? node.children.concat(node4user, node4subs)
+		: node.children.concat(node4subs, node4user);
+		
+		return node;
+	};
+	//解析成符合插件使用的数据格式
+	utree.fixedData = function(datas){
+		var ret = [];
+		if(datas instanceof Array){
+			$.each(datas, function(i, v){
+				ret.push(utree.createNode(v))
+			});
+		}else if(datas instanceof Object){
+			ret.push(utree.createNode(datas))
+		}
+		return ret;
+	};
+	utree.init = function($o, options){
+		var _o = this;//utree
+		//merge options
+		var opts = $.extend(_o._default, options);
+		//tree option处理
+		//自定义插件 option处理
+		
+		
+		//加载数据(本地)
+		_o.loadScript("datas.js", function() {
+			var zNodes = _o.fixedData(datas.root.data);
+			console.log(zNodes)
+			$.fn.zTree.init($o, opts, zNodes);
+		});
+		/*
+		//加载数据(远程)
+		_o.ajax({
+			success : function(data){
+				var zNodes = _o.fixedData(data)
+				console.log(zNodes)
+				$.fn.zTree.init($o, opts, zNodes);
+			}
+		})
+		*/
+	};
+	
+	utree.ajax = function(datas){
+		
+		var url = './orgUsers' + ( datas.id ? '?orgId='+ datas.id : '' );
+		
+		var
+		//成功回调
+		succ = function(ret){
+			if(ret.status === 'success')
+				if(datas.success) datas.success(ret.data)
+			else
+				alert(ret.errorMsg)
+		},
+		//失败回调
+		fail = function(XMLHttpRequest, textStatus, errorThrown){
+			if(datas.fail) datas.fail(XMLHttpRequest, textStatus, errorThrown)
+		},
+		//
+		fina = function(){
+			if(datas.finally) datas.finally()
+		};
+		
+		$.ajax({
+			url: url,
+			type: 'get',
+			dataType: 'json',
+			success: succ,
+			error: fail,
+            complete: fina
+		})
+	};
+	
+	
+	$(function(){
+		utree.init($('#tv'))
+	})
+})(window, jQuery)
+</script>
+</body>
+</html>
