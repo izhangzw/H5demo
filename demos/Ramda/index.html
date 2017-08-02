@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script src="ramda.min.js"></script>
+<script>
+var x = 1;
+function a(){
+	var x = 0;
+	return x;
+}
+var x = 2;
+var ret = a();
+
+console.log(ret, window.x)
+</script>
+</body>
+</html>

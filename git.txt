@@ -1,0 +1,3 @@
+git tag xxx
+git push origin --tags
+git tag -d xxx

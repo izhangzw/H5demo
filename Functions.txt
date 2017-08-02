@@ -1,0 +1,16 @@
+函数
+
+函数是什么
+	Function的一个实例 var adder = new Function("a", "b", "return a + b");
+	对象instanceof Object
+特征
+	对象
+	提供了作用域
+	
+函数的声明方式
+	函数声明 function method(){}
+	函数表达式/匿名函数 var method = function(){}
+	命名函数表达式 var method = function a(){}
+
+
+函数模式

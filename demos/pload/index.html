@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>jquery.pload</title>
+	<style>
+    	ul{background-color: #F2FBFF;position: absolute;left: 0;top:0;width: 200px;bottom: 0;}
+    	#content-main{background-color: #F0F4F7;margin-left: 250px;}
+    </style>
+</head>
+<body>
+	<ul>
+    	<li><a href="#a">二级模板U+597D</a></li>
+        <li><a href="#b">一级模板</a></li>
+        <li><a href="#c">datepicker range</a></li>
+        <li><a href="#echarts">echarts</a></li>
+    </ul>
+       
+    <div id="content-main"></div>
+</body>
+<script src="jquery.min.js"></script>
+<script src="jquery.pload.js"></script>
+<script>
+
+$('div').pload({
+	tmpl: 'a'
+})
+
+
+
+//https://www.zhihu.com/question/20289254
+//pushState		: 修改url而页面无跳转，并且该url会被存放在历史记录中
+//replaceState	: 不需要存放在历史记录中就需要使用replaceState
+//onpopstate	: 浏览器上前进和后退都会触发onpopstate能获取你设置的State对象
+</script>
+</html>

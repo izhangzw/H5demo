@@ -1,0 +1,11 @@
+兼容IE8透明度css
+{background:#000;opacity: 0;filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);}
+IE8 new Date('2017-11-11 00:00:00')不起作用
+IE8 不支持console
+IE8 JSON
+IE8 response
+IE8 Array.prototype.indexOf (9以后才支持)
+
+
+IE9 oninput onpropertychange 监听不到Ctrl+X、BackSpace、Delete
+

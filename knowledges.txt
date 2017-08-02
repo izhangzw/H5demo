@@ -21,7 +21,7 @@ prototype
 
 1.9.1之后的版本不支持IE8和IE8以下
 
-call & apply
+call & apply 都可以改变this指向
 apply(this, arguments) //在调用apply方法的时候第一个参数是对象(this)，第二个参数是一个数组集合
 call(this, name, age)
 所以call和apply的区别是传参的格式
@@ -45,3 +45,9 @@ apply是arguments对象作为参数，而call则是要把需要传的参数一�
 而确定一个值是哪种引用类型可以使用instanceof操作符
 
 ES6
+
+this
+
+
+
+监听键盘一直用 keyup  e.keyCode === 13

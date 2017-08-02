@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+	strong{color:red}
+</style>
+</head>
+<body>
+<ol>
+	<li>IE6-9不支持</li>
+	<li>safari和ie10下，当输入框获得焦点时，placeholder文字便立即消失</li>
+	<li>type=password 使用span代替的就可以解决</li>
+	<li>onInput: false. 输入值之后再删除 placeholder会显示;<br/>
+		onInput: true.  输入值之后再删除 placeholder将删除;
+	</li>
+	<li><strong>注意：</strong>尽可能使用span代替的方式isUseSpan: true. <strong>因为value 的方式会给input放置默认值</strong></li>
+	<li><strong>还有一个需要注意的地方</strong>, jsp中使用EL赋值的输入域会和span方式的placeholder有冲突. 推迟placeholder方法调用即可解决</li>
+	
+	<li><h3>最后！调用直接使用.placeholder({isUseSpan: true, onInput: false}) 不要怀疑</h3></li>
+</ol>
+<pre>
+::-moz-placeholder{color:red;}              //ff
+::-webkit-input-placeholder{color:red;}     //chrome,safari
+:-ms-input-placeholder{color:red;}          //ie10
+6-9需要插件控制颜色
+</pre>
+
+<input placeholder="请输入..." name="xx"/>
+<button onclick="alert($('input[name=xx]').val())">input的val</button>
+
+<br />
+<textarea placeholder="yyyy" name="yy"></textarea>
+<button onclick="alert($('textarea[name=yy]').val())">textarea的val</button>
+
+<script type="text/javascript" src="../../js/jquery.1.9.1.min.js" ></script>
+<!--<script src="./jquery.enplaceholder.js"></script>-->
+<script>
+//jquery.enplaceholder.js
+(function($){$.fn.extend({"placeholder":function(options){options=$.extend({placeholderColor:"#ACA899",isUseSpan:false,onInput:true},options);$(this).each(function(){var _this=this;var supportPlaceholder="placeholder" in document.createElement("input");if(!supportPlaceholder){var defaultValue=$(_this).attr("placeholder");var defaultColor=$(_this).css("color");if(options.isUseSpan==false){$(_this).focus(function(){var pattern=new RegExp("^"+defaultValue+"$|^$");pattern.test($(_this).val())&&$(_this).val("").css("color",defaultColor)}).blur(function(){if($(_this).val()==defaultValue){$(_this).css("color",defaultColor)}else{if($(_this).val().length==0){$(_this).val(defaultValue).css("color",options.placeholderColor)}}}).trigger("blur")}else{var $imitate=$('<span class="wrap-placeholder" style="position:absolute; display:inline-block; overflow:hidden; color:'+options.placeholderColor+"; width:"+$(_this).outerWidth()+"px; height:"+$(_this).outerHeight()+'px;">'+defaultValue+"</span>");$imitate.css({"margin-left":$(_this).css("margin-left"),"margin-top":$(_this).css("margin-top"),"font-size":$(_this).css("font-size"),"font-family":$(_this).css("font-family"),"font-weight":$(_this).css("font-weight"),"padding-left":parseInt($(_this).css("padding-left"))+2+"px","line-height":_this.nodeName.toLowerCase()=="textarea"?$(_this).css("line-weight"):$(_this).outerHeight()+"px","padding-top":_this.nodeName.toLowerCase()=="textarea"?parseInt($(_this).css("padding-top"))+2:0});$(_this).before($imitate.click(function(){$(_this).trigger("focus")}));$(_this).val().length!=0&&$imitate.hide();if(options.onInput){var inputChangeEvent=typeof(_this.oninput)=="object"?"input":"propertychange";$(_this).bind(inputChangeEvent,function(){$imitate[0].style.display=$(_this).val().length!=0?"none":"inline-block"})}else{$(_this).focus(function(){$imitate.hide()}).blur(function(){/^$/.test($(_this).val())&&$imitate.show()}).change(function(){if(!$(_this).val()){$imitate.show()}else{$imitate.hide()}})}}}});return this}})})(jQuery);
+
+$('input[name=xx]').placeholder({
+	isUseSpan: true,
+	onInput: false
+})
+$('textarea[name=yy]').placeholder({
+	isUseSpan: true,
+	onInput: false
+})
+</script>
+</body>
+</html>

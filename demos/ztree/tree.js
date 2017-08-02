@@ -129,8 +129,8 @@ a.getParentNode(),!0,!1,function(){try{k(a,d).focus().blur()}catch(b){}});else t
 			children: []
 		};
 		var 
-		self = data.self,
-		users = data.users || [];
+		self = data.self || data,
+		users = data.users || [],
 		subs = data.subOrganizations || [];
 		////self
 		if(self){

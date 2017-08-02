@@ -3,25 +3,86 @@
 <head>
 <meta charset="UTF-8" />
 <title></title>
+<link rel="stylesheet" href="../css/base.app.css" />
 <style>
-body{width: 100%;height: 100%;margin: 0; padding: 0}
-div{height: 90px;background-color: #000;}
-
-@media (min-width: 980px) {
-	div{width: 900px; background-color: red;}
-}
-@media (min-width: 768px) and (max-width: 979px) {
-	div{width: 800px; background-color: yellow;}
-}
-@media (max-width: 767px) {
-	div{width: 600px; background-color: green;}
-}
+	ul li{position: relative;}
+ul li img{position: absolute; left: 10px; top: 0}
+ul li>div{margin-left: 64px;background-color: #F0F0F0;}
+ul li>div>p:first-of-type{word-break: break-all;}
+body{}
+.item{height: 100px;}
+.item .a{width: 150px;background: red;}
 </style>
 </head>
 <body>
-	<div>i9999</div>
+	<a id="btn">alert</a>
+	</ul>
+
+<!--	
+	<div class="item flex">
+		<div class="a flex flex-align-center flex-pack-center">
+			<img width="44" height="44" style="background: #000080;"/>
+		</div>
+		<div class="c flex-1 flex flex-v">
+			<p class="flex-1">title</p>
+			<p class="flex-1">desc</p>
+		</div>
+	</div>
+-->	
 </body>
-<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.js"></script>
+<!--<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.js"></script>-->
 <script>
+//命名空间模式var app = {}
+//通用命名空间函数 app.namespace()
+//声明依赖关系var event = YAHOO.util.event;
+//私有成员function x(){ var name = 'id'; this.getName = function(){ return name;} }
+//特权方法 私有成员中的getName()即是一个特权方法
+//私有性失效 特权方法放回对象或数组导致
+//对象字面量及其私有性var x = (function(){ var name = 'id'; return { getName: function(){ return name;} } })();
+//原型和私有性 将属性或方法创建在构造函数的prototype中可以节约内存, 因为每次调用构造函数创建对象时, 私有成员和this中的任何成员都会重新创建
+//将私有方法揭示为公共方法 忽略直接看模块模式
+//模块模式
+/*var arr = (function(){
+	function a(){
+		console.log('a')
+	}
+	function b(){
+		console.log('b')
+	}
+	return {
+		a: a,
+		b: b,
+		c: b
+	}
+})();
+arr.a()
+arr.b()*/
+//创建构造函数模块
+/*var arr = (function(window){
+	return function(o){
+		console.log(o)
+	}
+})(this);
+new arr('x')*/
+//沙箱模式
+
+
+//(function(){
+//	
+//	
+//	var ret;
+//	
+//	var merge = function(){
+//		
+//	}
+//	console.log(v)
+//	console.info(args)
+//	if(){
+//		return ret;
+//	}else{
+//		arguments.callee(args)
+//	}
+//})({a:1}, {b:2}, {c:3})
+
 </script>
 </html>

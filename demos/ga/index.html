@@ -6,13 +6,42 @@
 <script>window.__zs = +new Date()</script>
 </head>
 <body>
+	<a>1</a>
+	<a>2</a>
+	<a>3</a>
+	<a>4</a>
+	<a onclick="go()">5</a>
+	<a href="./index2.html">22222222</a>
+	<button>gg</button>
+	<input type="button" value="xx">
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.js"></script>
 <script type="text/javascript">
-
+$(document).click(function(e){
+	e = e || window.event;
+	var target = e.target || e.srcElement;
+	console.log(e,target)
+	e.stopPropagation();
+	e.preventDefault()
+})
+function go(){
+	console.log(navigator)
+}
+//地址栏锚点变化触发回调
+window.onhashchange = function(e){
+	console.log(e)
+}
+	
+	
+	
+	
 var _maq = _maq || [];
 _maq.push(['_setAccount', 'its_okr']);
- 
+_maq.push(['_st', +new Date()]);
+
+
+
 (function() {
-	console.log(typeof window.onload)
+	//console.log(typeof window.onload)
 	if(typeof window.onload === 'function'){
 		
 	}else{
@@ -23,11 +52,27 @@ _maq.push(['_setAccount', 'its_okr']);
 		ma.type = 'text/javascript';
 		//ma.async = true;
 		ma.src = './ma.js';
-	//	ma.src = ('https:' == document.location.protocol ? 'https://analytics' : 'http://analytics') + '.codinglabs.org/ma.js';
+		//ma.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//192.168.31.168:8080/uosp-web/static/ma.js';
 		var s = document.getElementsByTagName('script')[0];
 		s.parentNode.insertBefore(ma, s);
 	}
-//console.log(window.onload);
+	
+	var _ajaxSend = XMLHttpRequest.prototype.open; 
+		XMLHttpRequest.prototype.open = function(method,url,asncFlag,user,password) {
+		    //有请求调用接口
+		    console.log('ask---->',this)
+		    this.st = +new Date()
+		    var args = {
+		    	url: this.responseURL,
+		    	method: method,
+		    	status: this.status,
+		    	st: +new Date()
+		    }
+		    var img = new Image(1, 1);
+		    //TODO 请求接口
+		    img.src = 'http://192.168.31.168:8080/uosp-web/jst/_zzw.gif?p=' + args;
+		    _ajaxSend.apply(this,arguments)
+		};
 })();
 </script>
 </body>

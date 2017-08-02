@@ -18,8 +18,8 @@
 div{position: absolute;bottom: 0;left: 0;right: 0;height: 88px;background-color: #00A552;}
 </style>
 
-<script src="./js/libs/require.js"></script>
-<script src="./js/libs/config.js"></script>
+<script src="./js/libs/amd/require.js"></script>
+<script src="./js/libs/amd/config.js"></script>
 </head>
 <body>
 <div>hh</div>
@@ -27,9 +27,15 @@ div{position: absolute;bottom: 0;left: 0;right: 0;height: 88px;background-color:
 
 
 iMoney
+<div id="locations"></div>
 </body>
+<script type="text/x-jquery-tmpl" id="car">
+	<h3>任务驾驶舱</h3>
+</script>
 <script>
-require(['a9','People'], function(a9, People){
+require(['a9','People','jquery', 'jquery.tmpl'], function(a9, People, $){
+	$('#car').tmpl().appendTo('#locations');
+	
 	a9.say('fuck')
 	
 	var u = People.Loginer({name:'yoxi',age: 19});

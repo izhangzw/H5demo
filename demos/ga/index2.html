@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>测试埋点统计2</title>
+</head>
+<body>
+	2342232
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.js"></script>
+<script type="text/javascript">
+//$(document)
+//.ajaxSend(function(e, req, setting){
+//	console.log('send')
+//})
+//.ajaxComplete(function(e, req, setting){
+//	console.log('ajaxComplete')
+//});
+var _ajaxOpen = XMLHttpRequest.prototype.open; 
+//var _ajaxSend = XMLHttpRequest.prototype.send; 
+XMLHttpRequest.prototype.open = function(method,url,asncFlag,user,password) {
+    //有请求调用接口
+    //var a = new XMLHttpRequest().onreadystatechange();
+	//console.log('x', a)
+    this.st = +new Date()
+    var args = {
+    	url: this.responseURL,
+    	method: method,
+    	st: +new Date()
+    }
+    //var img = new Image(1, 1);
+    //TODO 请求接口
+    //img.src = 'http://192.168.31.168:8080/uosp-web/jst/_zzw.gif?p=' + args;
+    _ajaxOpen.apply(this,arguments)
+};
+//XMLHttpRequest.prototype.send = function(){
+//	console.log('send', this.readyState)
+//	_ajaxSend.apply(this,arguments)
+//}
+
+$.ajax({
+	url: 'okr-web/likes/create',
+	method: 'get',
+	success: function(){
+		console.log('..')
+	}
+});
+$.ajax({
+	url: '../../js/jquery.js',
+	method: 'get',
+	success: function(){
+		console.log('..')
+	}
+});
+</script>
+</body>
+</html>
