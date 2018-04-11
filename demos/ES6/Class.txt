@@ -1,0 +1,41 @@
+class是function的一个语法糖   
+	typeof User  === 'function'
+
+实际上就是构造函数的另一种写法, 他的出现只是为了简化代码, 更面向对象
+
+
+
+
+书写一个class的时候, 没有写constructor函数, JavaScript引擎会默认添加一个空的constructor函数. 该函数是new的时候调用的.
+	
+	也就是说
+	class User{
+	}
+	class User{
+		constructor(){}
+	}
+	两者一致
+
+
+class User{
+	
+	get(){
+	
+	}
+	
+	list(){
+	
+	}
+}
+必须使用 new来调用. new User()
+没有私有函数，私有属性。
+私有函数可以 在函数命名规则上特殊处理：以"_"开头,  将方法放置class外部, 内部调用的时候使用 call/apply
+
+
+
+
+class中可以有属性吗?
+	当然, constructor中, this.xxx 定义的就是class的属性
+this指向问题
+使用Object.assign时,
+关于prototype

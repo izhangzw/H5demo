@@ -35,6 +35,10 @@
  * + getUserSelectionObj
  * + range2border
  * + range2click
+ * update 2017-8-18
+ * + Util.navigator.hasYScroll
+ * update 2017-8-31
+ * + transdate
  */
 'use strict';
 
@@ -327,6 +331,18 @@ Util.navigator = {
 		p.indexOf('mac') == 0 || 
 		p.indexOf('x11') == 0 || 
 		p.indexOf('linux') == 0)
+	},
+	isIE: function(){
+		var ua = navigator.userAgent.toLowerCase();
+		return /msie/.test(ua) || /trident/.test(ua);
+	},
+	ltIE9: function(){
+		return navigator.appName == "Microsoft Internet Explorer"&&parseInt(navigator.appVersion.split(";")[1].replace(/[ ]/g, "").replace("MSIE",""))<9;
+	},
+	hasYScroll: function(){
+		var sh = document.documentElement.scrollHeight,
+		ch = document.documentElement.clientHeight;
+		return sh > ch;
 	}
 };
 
@@ -628,6 +644,12 @@ var range2click = function(){
 	sel.removeAllRanges();
 	sel.addRange(range);
 }
+//兼容IE的2017-8-1转为时间戳
+var transdate = function(str){
+	var date = new Date(str.replace(/-/g, '/'));
+	return date.setHours(0,0,0,0).valueOf()
+}
+
 $(function(){ 
 	FastClick.attach(document.body);
 });

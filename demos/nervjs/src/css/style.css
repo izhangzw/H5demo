@@ -1,0 +1,83 @@
+@charset "utf-8";
+
+.line-ellipsis{overflow: hidden;text-overflow: ellipsis;-o-text-overflow:ellipsis;white-space: nowrap;}
+
+.caption{
+	height: 60px
+}
+
+.left-nav{
+	width: 239px;
+	background-color: #F6F6F6;
+	position: absolute;
+	/*border-right: 1px solid #ccc;*/
+}
+ul{
+	list-style: none;
+	
+}
+
+/*左侧导航*/
+.nav-block{ margin-bottom: 0; padding-left: 0; overflow: hidden; }
+.nav-block ul{ -webkit-padding-start: 0 }
+.nav-block .nav-item{ line-height: 40px; position: relative; }
+.nav-block .nav-item .nav-item-content { display: block; }
+.nav-block .nav-item .nav-item-content i{ width: 48px; display: inline-block; text-align: center; }
+.nav-block .nav-item .nav-item-content:hover{ background-color: #e7e7e7; }
+.nav-block .nav-item.active>.nav-item-content{ background-color: #E1DFE1;}
+.nav-block .nav-item.sub-active>a{ color: #000}
+
+.nav-block .nav-item .nav-block-collapse>.glyphicon-menu-up{display: inline-block;}
+.nav-block .nav-item .nav-block-collapse>.glyphicon-menu-down{display: none;}
+.nav-block .nav-item .nav-block-collapse{ padding: 0 10px; position: absolute; top: 0; right: 0; }
+.nav-block .nav-item .nav-block-collapse:hover{	background-color: #E1DFE1; }
+.nav-block .nav-item.opened .nav-block-child{opacity: 1;height: auto;}
+.nav-block .nav-item.opened .nav-block-collapse>.glyphicon-menu-up{display: none}
+.nav-block .nav-item.opened .nav-block-collapse>.glyphicon-menu-down{display: inline-block;}
+
+.main-content{ margin-left: 240px; position: relative; padding: 10px; }
+.nav-block .nav-block-child{ padding: 0; opacity: 0;height: 0;}
+.nav-block .nav-item.nav-item-child{height: 30px;line-height: 30px;}
+.nav-block .nav-item.nav-item-child .nav-item-content{ padding-left: 62px;}
+.nav-block .nav-item.nav-item-child .nav-item-content>i{ display: none; }
+
+/*左侧折叠*/
+.narrow .left-nav{
+	width: 48px;
+	overflow: hidden;
+}
+.narrow .main-content{
+	margin-left: 49px
+}
+
+.narrow .nav-block-child{
+	position: absolute;
+}
+.narrow .left-nav .nav-block .nav-item .nav-item-content span{
+	display: none;
+}
+.narrow .left-nav .nav-block .nav-item.nav-item-child span{
+	display: initial;
+}
+.narrow .left-nav .nav-block .nav-item .nav-block-collapse{
+	display: none;
+}
+
+
+/*Table*/
+table {	font-size: 14px; }
+table th {}
+table th i{
+	color: #C8C8C8;
+	padding: 0px 3px;
+}
+table th i.question{}
+table th i.sort{
+	visibility: hidden;
+	color: #444;
+	font-size: 13px;
+}
+table th.table-sort:hover .sort,
+table th.table-sort.visited .sort{
+	visibility: visible;
+}

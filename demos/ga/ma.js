@@ -2,6 +2,28 @@
 //登陆统计visit
 //请求统计http
 //点击统计event
+	//send by image
+    //通过Image对象请求后端脚本
+    var report = function(params){
+    	
+	    var
+	    img = new Image(1, 1),
+	    rnd_id = '_img_'+Math.random();
+	    
+	    //在全局变量中引用img, 防止img被垃圾回收机制过早回收造成请求失败
+	    window[rnd_id] = img;
+	    img.onload=img.onerror=img.onabort=function(){
+	    	img.onload = null;
+	    	img.onerror = null;
+	    	img.onabort = null;
+	    	img = null;
+	    	window[rnd_id] = null;
+	    }
+	    img.src = 'http://192.168.31.168:8080/uosp-web/jst/_zzw.gif?p=' + params;
+    }
+    
+    //
+    
     var _v_ = {};
     //登陆统计
     _v_.visit = function(){
@@ -40,9 +62,10 @@
 	                    break;
 	                default:
 	                    break;
-	            }   
+	            }
 	        }   
-	    }   
+	    }
+	    console.log(params)
 	    //拼接参数串
 	    var args=''; 
 	    for(var i in params) {
@@ -52,14 +75,20 @@
 	        args += i + '::' + encodeURIComponent(params[i]);
 	    }   
 	    //通过Image对象请求后端脚本
-	    var img = new Image(1, 1); 
-	    img.src = 'http://192.168.31.168:8080/uosp-web/jst/_zzw.gif?p=' + args;
+	    report(args);
     }
     
     //AOP拦截ajax请求
     _v_.http = function(){
 		
     }
+    //人肉
+    //自动化
+    _v_.event = function(){
+    	
+    }
+    
+    
     
     var fn;
     for(fn in _v_){

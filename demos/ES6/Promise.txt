@@ -1,0 +1,56 @@
+Promise
+	会吃掉错误
+	promise是在事件循环的结束执行
+
+Promise.prototype.then()
+Promise.prototype.catch()
+Promise.all()
+Promise.race()
+Promise.resolve();//返回Promise
+Promise.reject()
+
+
+
+//Polyfill
+Promise.prototype.done = function (onFulfilled, onRejected) {
+  this.then(onFulfilled, onRejected)
+    .catch(function (reason) {
+      // 抛出一个全局错误
+      setTimeout(() => { throw reason }, 0);
+    });
+};
+Promise.prototype.finally = function (callback) {
+  let P = this.constructor;
+  return this.then(
+    value  => P.resolve(callback()).then(() => value),
+    reason => P.resolve(callback()).then(() => { throw reason })
+  );
+};
+
+
+
+//简单例子
+const fn = () => {
+	return new Promise((resolve, reject)=>{
+		//coding
+	});
+}
+
+//整体例子
+ajax({
+	url: './testdatax.js'
+})
+.then( (data) => {
+	console.log('succ', data)
+})
+.catch( e => {
+	console.log('err',e)
+	//throw new Error(e)
+})
+.finally( () => {
+	console.log('!')
+	//不管成功或失败,都会走到这里
+})
+.done( () => {
+	//错误都会走到这里
+})

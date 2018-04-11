@@ -42,7 +42,7 @@ overflow-scrolling: touch;
 /*去掉ios&部分android系统中元素被点击时产生的边框*/
 a,button,input,textarea{
 -webkit-tap-highlight-color: rgba(0,0,0,0);
--webkit-user-modify:read-write-plaintext-only; 
+/*-webkit-user-modify:read-write-plaintext-only;元素内容可编辑*/
 }
 /*webkit表单元素的默认外观怎么重置
 .css{-webkit-appearance:none;}

@@ -16,91 +16,41 @@
 <title></title>
 </head>
 <body>
-	
-	<textarea></textarea>
-
+	<textarea autofocus="autofocus"></textarea>
 </body>
-<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.js"></script>
+<!--<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.js"></script>-->
+<script src="./pajax.js"></script>
 <script>
-u = {
-	tooltip : {
-		trigger: 'axis'
-	},
-	legend: {
-		itemWidth: 15,
-		y: 'bottom'
-		//,data: ['我主办的', '我协办的', '我指派的', '我订阅的']
-	},
-	grid: {
-		top: '4%',
-		left: '1%',
-		right: '3%',
-		bottom: '13%',
-		containLabel: true
-	},
-	xAxis: {
-		type: 'category',
-		axisLabel:{
-			textStyle:{
-				color:'#666'
-			}
-		},
-		axisTick:{
-			lineStyle:{
-				color:'#666'
-			}
-		},
-		axisLine:{
-			lineStyle:{
-				color:'#666'
-			}
-		}
-		//,data: ['今天','明天','本周','本月','下月']
-	},
-	yAxis:  {
-		type: 'value',
-		axisLabel:{
-			textStyle:{
-				color:'#666'
-			}
-		},
-		axisTick:{
-			lineStyle:{
-				color:'#666'
-			}
-		},
-		axisLine:{
-			lineStyle:{
-				color:'#666'
-			}
-		}
+/*ajax({
+	url: './testdata.js'
+})
+.then( (data) => {
+	console.log('succ', data)
+})
+.catch( e => {
+	console.log('err',e)
+})
+.finally( () => {
+	console.log('!')
+})
+.done( () => {
+	
+})*/
+
+/*let User = new class {
+	constructor(name,age){
+		this.name = name;
+		this.age = age;
 	}
-	/*,series: [{
-	 name: '我主办的',
-	 type: 'bar',
-	 barWidth: '25',
-	 stack: '总量',
-	 data: [5, 7, 3, 2, 6]
-	 }]*/
-};
-var options = {
-	legend: {
-		data: ['x1','x2','x3']
-	},
-	xAxis: {
-		data: ['xa1','xa2','xa3']
-	},
-	series: [{
-	 name: '我主办的',
-	 type: 'bar',
-	 barWidth: '25',
-	 stack: '总量',
-	 data: [5, 7, 3, 2, 6]
-	 }]
-}
+	
+	say(word){
+		_say.call(this, word)
+	}
+	
+}('zhangzw', 20);
 
-var od = $.extend(true, {},  u, options);
+console.log(User)*/
 
-console.log(od, u)
+alert()
 </script>
 </html>

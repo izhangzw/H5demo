@@ -1,0 +1,32 @@
+属性简洁表示法
+	let birth = '2000/01/01';
+	
+	const Person = {
+	
+	  name: '张三',
+	
+	  //等同于birth: birth
+	  birth,
+	
+	  // 等同于hello: function ()...
+	  hello() { console.log('我的名字是', this.name); },
+	  
+	  * m() {
+        yield 'hello world';
+      }
+	};
+
+
+属性名表达式
+	{
+		[变量]: 'var',
+		[表达式]: 'a+b',
+		[函数也一样](){}
+	}
+
+
+Object.assign(o, o1, o2);
+	方法用于对象的合并, 浅拷贝。 
+	不建议使用
+		1是因为浅拷贝, 返回新对象的修改会导致原始对象修改.
+		2因为会导致属性丢失

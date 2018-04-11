@@ -1,0 +1,38 @@
+扩展运算符 ...
+	将数组直接序列化 - 扩展运算符背后调用的是遍历器接口（Symbol.iterator），如果一个对象没有部署这个接口，就无法转换
+	...后面可以直接放置表达式
+	
+	应用： 
+	克隆数组
+	const a1 = [1,2,3];
+	const [...a2] = a1;
+	合并数组
+	const a3 = [1,2,3];
+	const a4 = [0, ...a4];
+
+
+Array.from();
+	用途：Array.from()可以将各种值转为真正的数组，并且还提供map功能。
+	这实际上意味着，只要有一个原始的数据结构，你就可以先对它的值进行处理，然后转成规范的数组结构，进而就可以使用数量众多的数组方法。
+
+
+	用法：
+	任何有length属性的对象，都可以通过Array.from方法转为真正的数组，而此时扩展运算符就无法转换
+	Array.from还可以接受第二个参数，作用类似于数组的map方法，用来对每个元素进行处理，将处理后的值放入返回的数组
+	
+
+Array.of();
+	将一堆值，转化为数组;
+	代替new Array();Array();
+
+
+Array.prototype.find()
+Array.prototype.findIndex()
+	查找返回元素或索引。 比indexOf更强大--可以判断某个对象在哪个位置
+	
+	['A', 'B', 'C', 'C', 'E'].find(function(v,i,arr){
+		return v === 'C';
+	})//C
+	['A', 'B', 'C', 'C', 'E'].findIndex(function(v,i,arr){
+		return v === 'C';
+	})//2

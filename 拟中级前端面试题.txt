@@ -1,4 +1,4 @@
-1
+1 知识点: 基本变量 引用变量
 	var a = 1;
 	var b = a;
 	b = 2;
@@ -11,7 +11,7 @@
 	bb.x = 200
 	
 	console.log('aa',aa)
-	//知识点: 基本变量 引用变量
+	
 2
 	
 	(function(){
@@ -30,3 +30,31 @@
 	}
 	a[6]();//答案：10
 	//原因：每一次循环，新的i值都会覆盖旧值，导致最后输出的是最后一轮的i的值
+
+
+4
+	var a = '', b = 0;
+
+	console.log(a==b)//true
+	console.log(a===b)//false
+
+
+5. 执行上下文栈
+	function foo(i) {
+		if (i < 0) return;
+		console.log('begin:' + i);
+		foo(i - 1);
+		console.log('end:' + i);
+	}
+	foo(2);
+	
+	//begin:2
+	//begin:1
+	//begin:0
+	//end:0
+	//end:1
+	//end:2
+如何判断页面完全加载完毕，DOM组装完毕
+如何拦截页面所有ajax执行完毕
+如何判断时段HTML是否在可视区域内
+如何处理连点问题

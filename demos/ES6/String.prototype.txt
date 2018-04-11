@@ -1,0 +1,20 @@
+includes(), startsWith(), endsWith() 这三个方法都支持第二个参数，表示开始搜索的位置
+	indexOf 有了新伙伴
+	
+repeat();
+	var a = 'x'.repeat(1);// a = ''
+
+
+模板字符串
+	`${fn()}`
+标签模板
+	functionName`Fuck u`
+	
+
+
+codePointAt()
+fromCodePoint()
+at()
+Iterator   ---  for...of
+padStart()，padEnd() 补全
+	'09-12'.padStart(10, 'YYYY-MM-DD') // "YYYY-09-12"

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script>
+	
+	
+///////////////Array////////////////
+
+// src
+var arr = ['key1', 'key2', '', ];
+/*
+var 
+key1 = arr[0],
+key2 = arr[1],
+key3 = arr[2],
+keyX = arr[10];*/
+
+/*let defaultKey = 'dKey';
+let [key1, key2=defaultKey, key3=defaultKey, keyX=defaultKey] = arr;
+
+
+console.log(key1,key2,key3,keyX)*/
+
+
+
+
+
+///////////////Object////////////////
+let {username, password} = {username: 'zhangzw', password: '123456'};
+console.log(username, password)
+
+// src
+var o = {
+	name1: 'zhangze',
+	age1: 27,
+	cool1: true,
+	FE1: [
+		'js',
+		'html',
+		'angular'
+	],
+	other1: {
+		married1: 'no',
+		enjoy1: 'xxxx'
+	}
+}
+
+/*var
+name = o.name1,
+age = o.age1,
+cool = o.cool1,
+fe = o.FE1,
+other = o.other1,
+married = o.other1.married1,
+enjoy = o.other1.enjoy1;
+*/
+
+let {
+	cool1: cool,
+	name1: name,
+	age1: age,
+	FE1: fe,
+	FE1: [fe1,fe2,fe3],
+	other1: other,
+	other1: {
+		married1: married,
+		enjoy1: enjoy
+	}
+} = o;
+
+console.log(name, age, cool, fe, other, married, enjoy)
+console.log(fe1, fe2, fe3)
+
+
+
+
+// o <-- arr
+let a = [1,2,3];
+let {
+	0: first,
+	[a.length-1]: last,
+	length
+} = a;
+
+console.log(first, last, length)
+
+
+
+
+
+///////////////Function////////////////
+/*function fn(str, num, arr, o){
+	console.log(str, num, arr[0], arr[1], arr[2], o.name, o.age)
+}*/
+function defaultAge(){
+	return 100;
+}
+function fn(str, num, [n1,n2,n3]=[], {name, age=defaultAge()}={}){
+	console.log(str, num, n1,n2,n3, name, age)
+}
+
+fn('string', 1, [1,2], {name: 'zhangzw'});
+
+
+
+
+console.log('09-12'.padStart(10, 'YYYY-MM-DD'))
+</script>
+</body>
+</html>

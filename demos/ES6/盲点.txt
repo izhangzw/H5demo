@@ -1,0 +1,54 @@
+let const
+解构赋值
+模板字符串``
+参数默认值
+数组的扩展运算符 ...
+rest参数 ...
+箭头函数=>
+
+对象属性可简写(name, fn(){})
+属性名表达式
+Promise
+async 函数
+Class
+Module
+
+简介Symbol
+
+
+[Q]. 一共有多少种声明方式, 多少种数据类型
+6种声明变量的方式
+	var
+	function
+	let
+	const
+	import
+	class
+	
+7种数据类型
+	Number
+	String
+	Boolean
+	Symbol
+	
+	undefined
+	null
+	
+	Object
+		Function
+		Array
+
+[TODO]. Module
+[TODO]. Class
+[TODO]. Generator
+[TODO]. Map 和 Set 结构，Generator 函数
+[?]. 取值函数//get/set
+[?]. 深浅拷贝Lodash 的_.defaultsDeep
+Symbol 
+[OK]. Promise
+[OK]. rest 参数 ...xx
+
+
+
+//封装promise ajax
+//Class

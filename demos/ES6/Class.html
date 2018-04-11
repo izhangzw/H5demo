@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<script>
+function User(name, age){
+	this.name = name;
+	this.age = age;
+}
+User.prototype.say = function(word){
+	console.log('x',this)
+	console.log(`${this.name} say: fucking ${word}`)
+}
+
+var person1 = new User('zhangzw', 12)
+person1.say('xxxxx')
+
+	
+	
+class User{
+	
+	say(word){
+		console.log(`${this.name} say: fucking ${word}`)
+	}
+}
+	
+var p = new User()
+	
+	
+	
+
+/*
+构造函数创建对象
+function User(name, age){
+	this.name = name;
+	this.age = age;
+}
+User.prototype.say = function(word){
+	console.log('x',this)
+	console.log(`${this.name} say: fucking ${word}`)
+}
+*/
+
+
+
+/*class User{
+	constructor(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	
+	say(word){
+		console.log(`${this.name} say: fucking ${word}`)
+	}
+}
+
+let zhangzw = new User('zhangzw', 20);
+zhangzw.say('hello');
+
+
+//表达式写法
+
+let User = class {
+	
+}*/
+
+//表达式写法 - 立即执行
+function _say(word){
+	console.log(`${this.name} say: fucking ${word}`)
+}
+let User = new class {
+	constructor(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	
+	say(word){
+		_say.call(this, word)
+	}
+}('zhangzw', 20);
+
+User.say('high2')
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+//UPLOAD
+				$fileinput.uploadify({
+					width: 97,
+					height: 30,
+					uploader: host+'/fileresource/upload',
+			    	swf: host+'/static/js/libs/upload/uploadify.swf',
+			    	formData: {workId : id, budinessId: item.id, businessType: '2'},
+			    	fileTypeExts: '*.*',
+			        fileSizeLimit: '20MB',
+			        auto: true,
+			        uploadLimit: 5,
+			        //checkExisting: true,
+			    	buttonText: '上传文件',
+					queueID: false,
+					removeCompleted: false,
+			    	overrideEvents: ['onSelectError', 'onDialogClose',  'onUploadError'],
+			    	onSelectError: function(file, errorCode, errorMsg){
+                        switch(errorCode) {
+                        	case -100:
+                        		layer.msg('最多上传5个文件');
+                        		break;
+                            case -110:
+                                layer.msg("文件 ["+file.name+"] 大小超出系统限制的" + $fileinput.uploadify('settings', 'fileSizeLimit') + "大小！");
+                                break;
+                            case -120:
+                            	layer.msg("文件 ["+file.name+"] 大小异常！");
+                                break;
+                            case -130:
+                            	layer.msg("文件 ["+file.name+"] 类型不正确！");
+                                break;
+                        }
+                    },
+			        onUploadStart: function(){
+			        	util.Loading.show();
+			        	//$fileinput.uploadify('settings', 'formData', {workId : id, budinessId: item.id, businessType: '2'})
+			        },
+			        onUploadSuccess: function(file, data, response){
+			        	var params, html;
+			        	data = JSON.parse(data)
+			        	if(data.status==='success'){
+			        		params = data.data&&data.data.length ? data.data[0] : {
+			        			fileName: file.name,
+				        		fileSize: file.size,
+				        		fileType: file.type ? file.type.split('/').pop() : file.name.split('.').pop(),
+				        		id: file.id
+				        	};
+				        	html = $tmpl_file.tmpl(params);
+				        	$files.append(html);
+				        	
+				        	_reportTask.addFiles(itemIndex, params)
+			        	}else{
+			        		layer.msg(data.errorMsg)
+			        	}
+			        },
+			        onUploadError: function(file, errorCode, errorMsg){
+			        	//console.log(file, errorCode, errorMsg)
+			        },
+			        onUploadComplete: function(){
+			        	util.Loading.hide();
+			        }
+			    });

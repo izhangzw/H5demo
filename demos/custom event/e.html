@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	
+<script src="./index.js"></script>
+<script>
+function shit1(){
+	console.log('shit1')
+}
+function shit2(){
+	console.log('shit2')
+}
+function shit3(){
+	console.log('shit3')
+}
+CustomEvent
+.listen('fuck', function(e, data){
+	console.log(`fuck! ${e}`, data)
+})
+.listen('shit', shit1)
+.listen('shit', shit2)
+.listen('shit', shit3)
+
+
+CustomEvent
+.fire('shit')
+.fire('fuck', {xx:1})
+.fire('shit')
+.remove('shit', shit3)
+.fire('shit')
+</script>
+</body>
+</html>

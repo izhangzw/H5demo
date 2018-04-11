@@ -1,0 +1,16 @@
+1.
+页面切换动画错乱
+
+
+2.
+$ionicHistory.goBack(-1) 会丢失返回页面url?后面的参数
+$ionicGoBack()也一样
+
+history.go(-1)又会导致死循环
+
+
+3.
+on-touch
+on-release
+
+可不可以做到点击ion-checkbox不选中

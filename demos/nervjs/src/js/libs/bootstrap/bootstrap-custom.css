@@ -1,0 +1,23 @@
+
+
+/*覆盖*/
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #333;
+  background-color: #F0EEF0;
+}
+blockquote{
+	font-size: inherit;
+	padding: 2px 10px;
+	margin: 0 0 10px;
+	border-color: #555;
+}
+
+/*自定义*/
+
+.container{margin:0;padding:0;width:100%!important;}
+.navbar{border-radius: 0;margin-bottom: 0;border: none}
+.navbar .navbar-header .navbar-brand{margin-left: 0!important;background-color: #E1DFE1;}
+
+
+.pagination{margin: 0;}

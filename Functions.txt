@@ -14,3 +14,64 @@
 
 
 函数模式
+
+API模式
+  -回调模式
+	事件回调; 定时回调; 将函数作为参数传递
+	function method(callback){
+		if(callback) callback()
+	}
+	
+  -配置对象
+	函数多个参数包装成对象传递
+
+  -返回函数
+	将函数作为返回值
+	function method(){
+		return function(){}
+	}
+	
+  -柯里化(Curry)
+	//正在建设...
+	
+	
+初始化模式 - 不污染全局命名空间, 代码更整洁
+  -即时函数/立即执行函数
+	(function(){})()
+	(function(){}())
+	
+  -即时对象初始化
+	({
+	a: 1,
+	init: function(){
+		console.log(this.a);
+	}}).init();
+	
+  -初始化分支/执行时分支
+	个人认为可以使用惰性函数代替
+	
+性能模式-加速代码运行
+  惰性函数/自定义函数
+	var method = function(){
+		//...初始化操作
+		method = function(){
+			//...再次执行逻辑
+		}
+		return method();
+	}
+	
+  备忘模式
+	使用函数属性以便是的计算过的值无需再次计算
+	var fn = function(params){
+	
+		if(!fn.cache[params]){
+			var ret = {};
+			//...开销很大的操作
+			fn.cache[params] = ret;
+		}
+		return fn.cache[params]
+	}
+	fn.cache = {}
+
+
+

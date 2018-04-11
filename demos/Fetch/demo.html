@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script src="./js/es5/es5-shim.min.js"></script>
+<script src="./js/es5/es5-sham.min.js"></script>
+<script src="./js/promise/es6-promise.min.js"></script>
+<script src="./js/fetch.js"></script>
+<script>
+window.fetch('x').then(function(response) {
+  return response.json();
+}).then(function(data) {
+  console.log(data);
+}).catch(function(e) {
+  console.log("Oops, error");
+});
+</script>
+</head>
+<body>
+</body>
+</html>

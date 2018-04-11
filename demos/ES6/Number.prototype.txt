@@ -1,0 +1,24 @@
+Math.trunc()
+	除一个数的小数部分，返回整数部分
+	Math.trunc(4.1) // 4
+	Math.trunc(4.9) // 4
+	Math.trunc(-4.1) // -4
+	Math.trunc(-4.9) // -4
+	Math.trunc(-0.1234) // -0
+	Math.trunc('123.456') // 123
+	Math.trunc(true) //1
+	Math.trunc(false) // 0
+	Math.trunc(null) // 0
+	Math.trunc(NaN);      // NaN
+	Math.trunc('foo');    // NaN
+	Math.trunc();         // NaN
+	Math.trunc(undefined) // NaN
+
+Math.sign()
+	判断一个数是正，负，还是0
+	
+	参数为正数，返回+1；
+	参数为负数，返回-1；
+	参数为0，返回0；
+	参数为-0，返回-0;
+	其他值，返回NaN。

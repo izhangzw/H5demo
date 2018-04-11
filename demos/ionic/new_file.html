@@ -1,0 +1,60 @@
+<ion-nav-bar class="bar-positive">
+  <ion-nav-back-button>
+  </ion-nav-back-button>
+</ion-nav-bar>
+<ion-nav-view></ion-nav-view>
+
+
+<ion-view hide-nav-bar="true">
+  <ion-content class="main-menu" scroll="false">
+<ion-view view-title="{{is_backPage?'余料\废料退库申请单':'物料接收单'}}">
+  <ion-nav-buttons side="left">
+    <div class="buttons">
+      <a class="button icon ion-ios-home-outline" ng-href="#/main-menu"></a>
+    </div>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <div class="buttons" ng-if="!is_backPage">
+      <!--<button class="button button-small" ng-click="getUnitProject()">查询</button>-->
+      <button class="button button-small" ng-click="getReceivedList()">已接收</button>
+    </div>
+  </ion-nav-buttons>
+	<ion-content class="rizhi-list bg_gray">
+
+陈灵燕 2017/12/14 11:39:28
+<ion-view>
+	<ion-nav-title>
+		<div class="item-input-inset searchDiv">
+		<!--<div class="bar bar-header item-input-inset searchDiv">-->
+			<label class="item-input-wrapper">
+				<i class="icon ion-ios-search placeholder-icon"></i>
+				<input type="search" placeholder="请输入单位工程信息" ng-model="query.value">
+				<!--<i class="icon ion-ios-close-empty placeholder-icon" ng-click="clean()"></i>-->
+			</label>
+		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="right">
+		<div class="buttons searchBtn">
+			<button class="button button-small" ng-click="search()">搜索</button>
+		</div>
+	</ion-nav-buttons>
+	<div class="bar bar-header item-input-inset">
+		<label class="item-input-wrapper">
+			<i class="icon ion-ios-search placeholder-icon"></i>
+			<input type="search" placeholder="请输入单位工程名称">
+		</label>
+		<button class="button button-clear">
+			搜索
+		</button>
+	</div>
+	<ion-content class="unit-project-list bg_gray">
+		<ion-refresher on-refresh="doRefresh()" pulling-text="下拉刷新..."></ion-refresher>
+		<ul class="list">
+		    <li class="item" ng-repeat="item in projectList" ng-click="getProjectInfo($index)">
+          <div class="row"><div class="col" style="white-space: normal;">{{item.PROJECT_NAME}}</div></div>
+          <div class="row single-project"><div class="col" style="white-space: normal;">{{item.SINGLE_PROJECT_NAME}}</div></div>
+        </li>
+		</ul>
+		<ion-infinite-scroll ng-if="loadMoreState" distance="1%" immediate-check="false" on-infinite="loadMore()"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>

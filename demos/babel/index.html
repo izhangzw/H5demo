@@ -6,11 +6,13 @@
 </head>
 <body>
 	<h3>IE8 放弃 ES6吧</h3>
+<!--<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.js"></script>-->
 <script src="browser.js"></script>
+<!--<script type="module" src="./pajax.js"></script>-->
 <script type="text/babel">
-const x = (a, b) => a+b
+let fn = x => x;
 
-console.log(x(1,2))
+console.log(fn(1))
 </script>
 </body>
 </html>

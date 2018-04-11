@@ -1,0 +1,50 @@
+解构赋值(destructuring)
+	数组 - 有序, 按次序取值
+	对象 - 无序, 按名取值
+	字符串 - 字符串被转换成了一个类似数组的对象
+	数字和布尔值 - 被转换成对象
+	函数参数
+	
+	
+	
+解构赋值的规则是，只要等号右边的值不是对象或数组，就先将其转为对象
+由于数组本质是特殊的对象，因此可以对数组进行对象属性的解构
+
+
+可嵌套
+
+允许有默认值, 默认值可以引用解构赋值的其他变量
+	默认值生效的条件是，右侧 属性值严格等于(===)undefined
+
+
+
+
+[]
+
+let [a, b=1] = [1, 2];// a=1, b=2 
+let [x = f(), y = x] = [1, 2];// f()不会执行, x=1, y=2
+
+
+{}
+
+let {username: name} = {username: 'nick'};// name = 'nick'
+let {list, init, clean} = Page;
+let {0: first, [arr.length-1]: last} = [0,1,2,3];// Array --> Object
+let {uname='zhangzw', nickname='Z-Nick'} = {nickname: 'jDragon'};// uname=zhangzw; nickname=jDragon
+
+
+func
+
+function f({x=1, y=2} = {}){
+	console.log(x, y)
+}
+
+
+常用
+交换变量的值
+从函数返回多个值
+提取JSON数据
+函数参数的定义  -- 参数与变量名对应起来
+函数参数的默认值
+遍历Map结构
+使用模块的指定方法

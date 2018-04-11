@@ -1,0 +1,29 @@
+let & const
+全局作用域，函数作用域
++块级作用域
+
+let
+用来声明变量的
+1不存在变量提升, 存在TDZ(暂时性死区), 必须先声明后使用
+2不允许重复声明 
+3let声明的变量只在所处于的块级有效
+4不使用var的话,可以使用{}代替IIFE
+
+const
+1声明常量, 声明必须赋值
+2声明的引用类型, 是可以修改内部属性的, 但无法重新赋值.
+3Object.freeze()可以冻结引用类型, 将无法添加新属性
+	彻底冻结对象
+	var constantize = (obj) => {
+	  Object.freeze(obj);
+	  Object.keys(obj).forEach( (key, i) => {
+	    if ( typeof obj[key] === 'object' ) {
+	      constantize( obj[key] );
+	    }
+	  });
+	};
+	
+ES6 6种声明变量的方法: var function let const import class
+
+
+let const class声明的变量不会出现在顶层对象中
