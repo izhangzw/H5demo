@@ -9,9 +9,12 @@
 
 
 # 常用命令
-ionic start "ionic1-tab-starter" tabs --type=ionic1 --display-name="ionic1-tab-starter" --cordova --no-git --no-link
-ionic serve
-ionic cordova plugin save
+`ionic start "ionic1-tab-starter" tabs --type=ionic1 --display-name="ionic1-tab-starter" --cordova --no-git --no-link`
+
+`ionic serve`
+
+`ionic cordova plugin save`
+
 ionic cordova platform ls   //查看有哪些平台
 ionic cordova platform remove android/ios   //移除安卓/ios平台
 ionic cordova platform add android/ios   //添加安卓/ios平台
@@ -25,8 +28,26 @@ cordova plugin add [PLUGIN_ID]@[VERSION]
 
 
 # 常用代码
-$ionicGoBack()
 
+> 返回上一页的3种方式
+
+```js
+
+//
+$ionicGoBack()
+// 不想返回死循环
+$window.history.go(-1)
+// 
+$ionicHistory.backView().go()
+```
+
+> 跳转刷新
+
+```js
+$state.go('app.home', {}, {reload:true});
+//$url自己封装的
+$url.jump('/app/home', {reload: +new Date()});
+```
 
 
 # ionic我遇到的坑(持续更新ing...)
