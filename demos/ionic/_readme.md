@@ -9,11 +9,10 @@
 
 
 # 常用命令
-`ionic start "ionic1-tab-starter" tabs --type=ionic1 --display-name="ionic1-tab-starter" --cordova --no-git --no-link`
-
-`ionic serve`
-
-`ionic cordova plugin save`
+```
+ionic start "ionic1-tab-starter" tabs --type=ionic1 --display-name="ionic1-tab-starter" --cordova --no-git --no-link`
+ionic serve
+ionic cordova plugin save
 
 ionic cordova platform ls   //查看有哪些平台
 ionic cordova platform remove android/ios   //移除安卓/ios平台
@@ -25,7 +24,7 @@ apkSign.bat//安卓签名
 
 cordova plugin remove [PLUGIN_ID]
 cordova plugin add [PLUGIN_ID]@[VERSION]
-
+```
 
 # 常用代码
 
