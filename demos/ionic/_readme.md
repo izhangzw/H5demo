@@ -112,3 +112,7 @@ iOS在被复制的元素上引用该class, 并添加属性. 例如`<h2 class="se
 <plugin name="jpush-phonegap-plugin" spec="~3.2.13">
     <variable name="APP_KEY" value="ce4bb2d359088f49b0151310" />
 </plugin>
+
+
+### iOS11 吊起扫码程序两次
+通过debounce解决
