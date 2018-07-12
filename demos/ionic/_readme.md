@@ -1,3 +1,5 @@
+# 转移至ionic1-tab-starter/FAQ.md
+
 # 使用过的版本
 + 1.7.15
 + 2.1.17
