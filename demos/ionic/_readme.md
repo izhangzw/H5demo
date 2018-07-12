@@ -76,10 +76,10 @@ ionic cordova build android 的时候 会在根目录生成res/
 
 
 ### 隐藏小技巧
-ionic 工程, HTML准备完毕之后, ionic会根据平台为body添加对应class
-例如
-`iphone iOS11.2, body的class会包含"platform-ios platform-ios11 platform-ios11_2"`
-`android sdk4.3, body的class会包含"platform-android platform-android4 platform-android4_3"`
+ionic 工程, HTML准备完毕之后, ionic会根据平台为body添加对应class   
+例如   
+`iphone iOS11.2, body的class会包含"platform-ios platform-ios11 platform-ios11_2"`   
+`android sdk4.3, body的class会包含"platform-android platform-android4 platform-android4_3"`   
 
 
 
@@ -109,9 +109,11 @@ iOS在被复制的元素上引用该class, 并添加属性. 例如`<h2 class="se
 
 
 ### config.xml plugin携带参数模板
+```
 <plugin name="jpush-phonegap-plugin" spec="~3.2.13">
     <variable name="APP_KEY" value="ce4bb2d359088f49b0151310" />
 </plugin>
+```
 
 
 ### iOS11 吊起扫码程序两次
